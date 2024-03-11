@@ -13,8 +13,22 @@ app.use(express.json());
 require("express-async-errors");
 
 //Model import
+ const router = require("./todo.router")
 
-app.use(require("./app/routes/todo.router"));
-app.use(require("./app/errorHandler/todo.error"));
+const errorHandler = (err, req, res, next) => {
+  const errorStatusCode = res.errorStatusCode ?? 500;
+  console.log("errorHandler worked.");
+  res.status(errorStatusCode).send({
+    error: true, // special data
+    message: err.message, // error string message
+    cause: err.cause, // error option cause
+    // stack: err.stack, // error details
+  });
+};
+
+
+
+app.use(router);
+app.use(errorHandler);
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(PORT, () => console.log(`Example app listening on PORT ${PORT}!`));
