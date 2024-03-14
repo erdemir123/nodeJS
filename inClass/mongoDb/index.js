@@ -17,6 +17,7 @@ app.all("/",(req,res)=>
     res.status(200).send("welcome")
 })
 
+app.use('/user',require("./src/routes/user.router"))
 app.use('/blog',require("./src/routes/blog.router"))
 app.use(require("./src/middlewares/error"))
 
