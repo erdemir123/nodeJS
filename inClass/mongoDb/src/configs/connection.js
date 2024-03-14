@@ -5,8 +5,8 @@
 
 
 const mongoose = require("mongoose")
-
-mongoose.connect("mongodb://127.0.0.1:27017/")
+const MONGODB= process.env.MONGODB
+mongoose.connect(MONGODB)
     .then(()=>console.log("DB CONNECTED"))
     .catch((err)=>console.log("DB NOT CONNECTED"))
 
