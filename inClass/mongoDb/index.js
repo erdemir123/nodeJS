@@ -17,7 +17,8 @@ app.all("/",(req,res)=>
     res.status(200).send("welcome")
 })
 
-app.use('/blog',require("./src/routes/blog.route"))
+app.use('/blog',require("./src/routes/blog.router"))
 app.use(require("./src/middlewares/error"))
 
-app.listen(PORT, () => console.log(`Example app listening on PORT http://${HOST}:${PORT}`));
+app.listen(PORT, () => console.log(`Example app listening on PORT http://${HOST}:${PORT}`))
+require("./src/sync")()
